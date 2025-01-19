@@ -1,0 +1,797 @@
+---
+title: "R4DS Exercises"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE, message=FALSE}
+library(learnr)
+library(tidyverse)
+library(patchwork)
+library(gapminder)
+library(nycflights13)
+library(janitor)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+## Packages
+
+Install in the console the packages
+
++ `patchwork`
++ `gapminder`
++ `nycflights13`
++ `janitor`
+
+
+
+Load the tidyverse.
+
+```{r load-packages, message=FALSE, exercise.lines =3, exercise=TRUE}
+
+
+```
+
+## Intro
+
+
+### Exercise 1
+
+Modify the following code such that the result will be 1.
+
+
+```{r exercise-1, exercise=TRUE}
+x <- c(1, exp(1), NA)
+sum(log(x))
+```
+
+Take a look at the help page of `sum()` to figure out which argument of `sum()` you need to adjust.
+
+----------------------------
+
+
+### Exercise 2
+
+Consider the vector
+
+```{r exercise-2, exercise.lines = 8, exercise = TRUE}
+x <- c(2:11, NA)
+
+# a
+
+# b
+
+# c
+
+```
+and return:
+
+a) the elements at even-numbered positions.
+
+b) every element except the last value.
+
+c) only even values (and no missing values).
+
+
+```{r exercise-2-hint}
+# use %% for c.
+```
+
+
+----------------------------
+
+
+### Exercise 3
+
+Write a function with the name `both_na()`, a summary function that takes two vectors of the same length and returns the number of positions that have an `NA` in both vectors.
+
+_Hint:_ Take a look at the values of one vector, where the other has missing values - use `is.na()`.
+
+```{r exercise-3, exercise = TRUE}
+both_na <- function(x, y){
+  # subset x where y has missing values
+    
+  # sum over all missing values in x, where y has missing values
+  
+  # return the result from the previous step 
+
+}
+
+# Check if your function works by applying it on the pairs 
+# (x, y), (x, z1) and (x, z2)
+ 
+x <- c(1, 3, NA, NA, NA)
+y <- c(1, NA, NA, 5, NA)
+z1 <- c(NA, 1:4)
+z2  <- 1:4
+
+both_na( )
+```
+
+
+
+
+
+
+
+## Visualisation
+
+
+
+
+
+Modify the code to create boxplots of `hwy` for each `class` level.
+
+```{r exercise-4, exercise = TRUE, exercise.eval=TRUE}
+ggplot(mpg) + 
+  geom_point(aes(class, hwy))
+```
+
+
+
+
+
+
+
+----------------------------
+
+### Exercise 5
+
+Develop the code to create the following histogram for `hwy`:
+
+![](images/ex-5.png){width=70%}
+
+```{r exercise-5, exercise = TRUE}
+
+```
+
+
+
+----------------------------
+
+
+### Exercise 6
+
+Change the bin width of the previous histogram to 2. Refer to the `geom_histogram()` help page for guidance.
+
+
+```{r exercise-6, exercise = TRUE}
+
+```
+
+
+
+
+
+
+
+----------------------------
+
+### Exercise 7
+
+
+Use a scale function to adjust the ticks of the continuous y aesthetic, as shown in the following plot.
+
+```{r, echo=FALSE}
+p <- ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point() 
+
+p + (p +scale_y_continuous(breaks = seq(15, 40, by = 5)) )
+```
+
+
+
+```{r exercise-7, exercise = TRUE}
+# complete the following code
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point()  + 
+  
+```
+
+
+
+
+
+----------------------------
+
+### Exercise 8
+
+
+
+What is wrong with this code? Why aren't the points displayed in blue? 
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = "blue"))
+```
+
+
+Adjust the code such that the points will be displayed in blue.
+
+```{r exercise-8, exercise = TRUE, exercise.eval = FALSE}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = "blue"))
+
+```
+
+
+
+----------------------------
+
+
+### Exercise 9
+
+
+
+Recreate the R code required to generate the following graphs.
+
+```{r, echo=FALSE, message=FALSE}
+p1<- ggplot(mpg, aes(x = displ, y = hwy)) + geom_point(size = 2) + 
+  geom_smooth(se=FALSE, linewidth = 2)
+p3 <- ggplot(mpg, aes(x = displ, y = hwy)) +  geom_point(size = 2)  + geom_smooth(aes(group = drv), se=FALSE, linewidth = 2)  
+p2<- ggplot(mpg, aes(x = displ, y = hwy, colour = drv)) + geom_point(size = 2) +
+  geom_smooth(se=FALSE, linewidth = 2)
+p4 <- ggplot(mpg, aes(x = displ, y = hwy)) + geom_point(aes(colour = drv), size = 2) +
+  geom_smooth(se=FALSE, linewidth = 2)
+(p1 | p4) / (p2 | p3)
+
+```
+
+
+
+
+
+```{r exercise-9, exercise = TRUE, exercise.eval=FALSE}
+# top left
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+   
+# top right
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+   
+# bottom left
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+   
+# bottom right
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+   
+```
+
+
+
+----------------------------
+
+### Exercise 10
+
+Make two scatterplots of `hwy` vs. `cyl`. For the second one,the `position` argument should be set equal to `'jitter'`. What is the effect?
+
+
+```{r exercise-10, exercise = TRUE}
+# the first scatterplot of hwy vs cyl with posi
+ggplot(mpg, aes(x = cyl, y = hwy)) + 
+  geom_point()
+
+# the second scatterplot using a different position argument
+ggplot(mpg, aes(x = cyl, y = hwy)) + 
+  geom_point()
+
+```
+
+
+
+----------------------------
+
+
+### Exercise 11
+
+
+Use `geom_histogram()` to create a histogram of `hwy`, and incorporate the variable `drv` using the aesthetic `fill`. Then, plot the histogram so that the area of the bins integrates to 1.
+
+```{r exercise-11, exercise = TRUE, exercise.eval = FALSE}
+# complete the following code
+ggplot(mpg) + 
+  geom_histogram( )
+
+```
+
+
+
+
+
+----------------------------
+
+
+## Data manipulation
+
+
+Load the gapminder package.
+
+```{r load-gapminder, exercise = TRUE}
+
+
+```
+
+
+
+
+----------------------------
+
+### Exercise 12
+
+Think about at least two other ways to create:
+
+```{r}
+select(gapminder, country, continent)
+```
+
+
+```{r execise-12, exercise=TRUE, exercise.eval=FALSE}
+select( )
+select( )
+
+```
+
+
+
+----------------------------
+
+
+### Exercise 13
+
+
+
+1. Find all observations after 1980 and a population size of less than 250000.
+
+1. Find all observations from Djibouti or with a population size of less than 70000
+
+
+
+```{r exercise-13, exercise=TRUE, exercise.eval =FALSE}
+# 1. 
+filter(gapminder, )
+# 2.
+filter(gapminder,  )
+```
+
+
+
+
+
+
+
+----------------------------
+
+
+### Exercise 14
+
+
+Use `|>` to 
+
+1. Filter `gapminder` to observations from Africa in 1992, _then_ 
+
+2. select the variables `country` and `lifeExp`, _then_ 
+
+3. arrange the result so that the observations with the lowest life expectancy is on top.
+
+
+
+```{r exercise-14, exercise = TRUE, exercise.eval =FALSE}
+
+gapminder |> 
+  filter( ) |>
+  select( ) |>
+  arrange( )
+```
+
+
+
+----------------------------
+
+### Exercise 15
+
+Use `group_by()` to calculate the average life expectancy for each __year__, and then create a line plot showing the results with different colors for each __continent__.
+
+
+
+```{r exercise-15, exercise = TRUE, exercise.eval = FALSE}
+gapminder |> 
+  group_by( ) |>
+  
+```
+
+
+
+
+
+----------------------------
+
+Load the `nycflights13` package:
+
+```{r load-nycflights13, exercise = TRUE}
+
+```
+
+
+Then take a look at the help file to get some information about the dataset:
+
+```{r help-flights, exercise = TRUE, exercise.eval=FALSE}
+?flights
+```
+
+
+
+
+### Exercise 16
+
+
+
+Find all flights that:
+ 
+  1. had an arrival delay of two or more hours. 
+```{r exercise-16-a, exercise = TRUE}
+
+```
+
+ 1. departed in summer (July, August, and September) - use `dplyr::between()`.
+```{r exercise-16-b, exercise = TRUE}
+
+```
+
+
+ 1. arrived more than two hours late, but didn't leave late.  
+```{r exercise-16-c, exercise = TRUE}
+
+```
+
+ 1. were delayed by at least an hour, but made up over 30 minutes in flight.
+```{r exercise-16-d, exercise = TRUE}
+
+```
+
+ 
+ 1. departed between midnight and 6am (inclusive). 
+```{r exercise-16-e, exercise = TRUE}
+
+```
+
+
+
+----------------------------
+
+
+### Exercise 17
+
+Find the 10 most delayed flights at departure.
+
+```{r exercise-17, exercise=TRUE}
+
+```
+
+
+
+
+
+----------------------------
+
+
+### Exercise 18
+
+
+```{r exercise-18-setup}
+not_canceled <- flights |>
+  filter(!is.na(dep_delay), !is.na(arr_delay))
+
+```
+
+
+Define the variable 
+
+```{r exercise-18a, exercise = TRUE, exercise.eval = TRUE, exercise.setup = "exercise-18-setup"}
+not_canceled <- flights |>
+  filter(!is.na(dep_delay), !is.na(arr_delay))
+
+```
+
+containing all non-cancelled flights. Come up with another approach that will give you the same output as
+
+```{r exercise-18b, exercise = TRUE, exercise.eval=TRUE, exercise.setup = "exercise-18-setup"}
+not_canceled |> count(tailnum, wt = distance)
+```
+
+without using `count()`.
+
+
+
+
+```{r exercise-18c, exercise = TRUE, exercise.eval = FALSE, exercise.setup = "exercise-18-setup"}
+not_canceled |>
+
+```
+
+
+
+----------------------------
+
+
+### Exercise 19
+
+Which carrier has the worst delays? Decide if you consider arrival or departure delays.
+
+
+
+```{r exercise-19, exercise = TRUE, exercise.eval =FALSE}
+flights |>
+  
+  
+```
+
+
+
+----------------------------
+
+
+### Exercise 20
+
+Practice your `across()` skills:
+
+1.  Compute the number of unique values in each column of `palmerpenguins::penguins`.
+
+```{r exercise-20a, exercise = TRUE, exercise.eval = FALSE}
+# complete the following code
+penguins |> 
+  summarize(
+
+      )
+```
+
+2.  Compute the maximum value of every numeric column in `ggplot2::mpg`.
+
+```{r exercise-20b, exercise = TRUE, exercise.eval = FALSE}
+# complete the following code
+mpg |> 
+  summarize(
+
+  )
+
+```
+
+3.  Group `ggplot2::diamonds` by  `color`. Then count the number of observations and compute the mean and standard deviation of each numeric column. Use appropriate column names for the output.
+
+```{r exercise-20c, exercise = TRUE, exercise.eval = FALSE}
+# complete the following code
+diamonds |> 
+  group_by(color) |> 
+  summarize(
+
+      )
+
+```
+
+
+
+----------------------------
+
+
+## Tidy data and Joins
+
+
+### Exercise 21
+
+Another dataset about the WHO global tuberculosis report is `table3`, which contains the following variables:
+
+```{r}
+table3
+```
+
+The rate column contains the values of two variables: case counts and population counts. We would like to snip it apart at the "/" character to create two columns `cases` and `population`. Try to do that by using `tidyr::separate()`.
+
+
+
+```{r exercise-21, exercise = TRUE, exercise.eval =FALSE}
+# complete the following code
+table3 |> 
+
+```
+
+
+----------------------------
+
+
+### Exercise 22
+
+You already know the `gapminder` dataset. `country_codes` contains the country names and  [ISO 3166-1 codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) for the countries contained in `gapminder`. Find the country codes for Guinea-Bissau, Nicaragua and Puerto Rico.
+
+_Hint:_ Remember that there are repeated measures for each country, but the code remains constant over the years.
+
+
+
+```{r exercise-22, exercise = TRUE, exercise.eval=FALSE}
+# complete the following code
+gapminder |> 
+    filter( ) |>  
+  
+```
+
+
+----------------------------
+
+
+### Exercise 23
+
+
+Imagine you have found the top 10 most popular destinations using this code:
+
+
+```{r exercise-23-setup, exercise = TRUE, exercise.eval =TRUE}
+top_dest <- flights |>
+  count(dest, sort = TRUE) |>
+  head(10)
+```
+
+
+How can you find all flights to those destinations?
+
+```{r exercise-23, exercise = TRUE, exercise.eval =FALSE, exercise.setup = "exercise-23-setup"}
+# complete the following the code
+top_dest |> 
+
+```
+
+
+
+----------------------------
+
+
+### Exercise 24
+
+
+In `flights` each plane is identified through it's tail number (`tailnum`). 
+What do the tail numbers (in `flights`) that don't have a matching record in `planes` have in common? 
+
+_Hint:_ `semi_join()` returns all rows with a match. You want the opposite. Take a look at all columns with `print()`
+
+
+
+```{r exercise-24, exercise = TRUE, exercise.eval = FALSE}
+# complete the following 
+no_tail <- flights |>
+
+# and then take a look at all columns of no_tail
+print(no_tail, width = Inf)
+
+```
+
+
+
+## Data I/O
+
+
+
+### Exercise 25
+
+Use `read_csv()` to read in
+
+```{r exercise-25-setup, exercise = TRUE, exercise.eval = TRUE}
+csv <- "
+  fac_var
+  a
+  a
+  b
+  c
+  b"
+```
+
+such that `fac_var` is a factor variable (not a character).
+
+
+
+
+```{r exercise-25, exercise = TRUE, exercise.eval=FALSE, exercise.setup = "exercise-25-setup", message=FALSE}
+read_csv(
+  csv, 
+
+)
+```
+
+
+
+----------------------------
+
+
+### Exercise 26
+
+Read in the file nyc_citibike_short.csv, which contains a shorted version of ncbd. Observe that the file contains some metadata at the top. Try to find an argument of `read_csv()`, which allows you to skip this information. 
+
+_Hint:_ Take a look at the help to find an appropriate argument of `read_csv()`.
+
+
+__Remark:__ A version of this file is available online and you should use this version and not your local version.
+
+```{r exercise-26, exercise=TRUE, exercise.eval = TRUE}
+# adjust/complete the following code to get a proper output
+read_csv("https://syncandshare.lrz.de/getlink/fi2wRnXJjN9Qjx8wFkhRQ3/nyc_citibike_short.csv")
+```
+
+
+----------------------------
+
+
+### Exercise 27
+
+Try again to read in nyc_citibike_short.csv while skipping the metadata. But this time just read in `tripduration` and `gender`
+
+
+
+
+```{r exercise-27, exercise = TRUE, exercise.eval = FALSE}
+read_csv("https://syncandshare.lrz.de/getlink/fi2wRnXJjN9Qjx8wFkhRQ3/nyc_citibike_short.csv"
+         )
+```
+
+
+
+----------------------------
+
+
+### Exercise 28
+
+Indexing the variable containing the start station id with the `$`-notation is not ideal due to the variable name. Try using `janitor::clean_names()` to choose "nicer" variable names.
+
+_Hint:_ The names should be changed after the data has been read in. This is necessary if the full dataset has been overwritten in the previous exercise.
+
+
+
+```{r exercise-28a, exercise = TRUE, exercise.eval = FALSE}
+# use your code from Exercise 26 to load again the complete dataset
+nycb_short <- read_csv("data/nyc_citibike_short.csv", ...)
+
+```
+
+
+Use `janitor::clean_names()` to choose "nicer" variable names.
+
+```{r exercise-28b, exercise = TRUE, exercise.eval = FALSE}
+# try using the :: for calling clean_names without loading the janitor package
+nycb_short <- nycb_short |> 
+
+# show the new variable names    
+names(nycb_short)
+```
+
+
+
+
+----------------------------
+
+### Exercise 29
+
+
+Try to read the iris Google sheet. Compute as summary statistic the mean and standard deviation of each numeric variable - try to use `summarise_if()`. 
+Write the result of `summarise_if()` (or `summarise()`) to the iris Google sheet. Use as name for the new sheet your name.
+
+
+
+We first read the Google sheet with
+
+```{r exercise-29a, exercise = TRUE, exercise.eval = FALSE}
+# google sheet id
+iris_id <- "1NiKNOGnhCdxQWLY_lJYL-7EhHa76-Vx56PJfiIWm7os"
+# read in the google sheet
+iris_gs <- ...
+  
+```
+
+
+```{r exercise-29b, exercise = TRUE, exercise.eval = FALSE}
+# compute the numerical summary
+iris_sum <- iris_gs |> 
+  
+# and write it back to the iris Google sheet
+
+
+```
+
+
+
+
