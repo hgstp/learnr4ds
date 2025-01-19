@@ -706,11 +706,11 @@ Read in the file nyc_citibike_short.csv, which contains a shorted version of ncb
 _Hint:_ Take a look at the help to find an appropriate argument of `read_csv()`.
 
 
-__Remark:__ A version of this file is available online and you should use this version and not your local version.
+__Remark:__ A version of this file is available in the subfolder `data`.
 
 ```{r exercise-26, exercise=TRUE, exercise.eval = TRUE}
 # adjust/complete the following code to get a proper output
-read_csv("https://syncandshare.lrz.de/getlink/fi2wRnXJjN9Qjx8wFkhRQ3/nyc_citibike_short.csv")
+
 ```
 
 
@@ -725,8 +725,8 @@ Try again to read in nyc_citibike_short.csv while skipping the metadata. But thi
 
 
 ```{r exercise-27, exercise = TRUE, exercise.eval = FALSE}
-read_csv("https://syncandshare.lrz.de/getlink/fi2wRnXJjN9Qjx8wFkhRQ3/nyc_citibike_short.csv"
-         )
+
+
 ```
 
 
