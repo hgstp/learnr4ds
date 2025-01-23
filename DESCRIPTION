@@ -10,7 +10,8 @@ Authors@R: c(
       comment =  c(ORCID = "0000-0002-4572-9087")
     )
   )
-Description: Tutorial for the course "R for Data Science".
+Description: Tutorial for the course "R for Data Science". In this tutorial
+    you can work on several exercises from the R4DS book.
 License: GNU General Public License (version 3)
 Depends:
   tidyverse
