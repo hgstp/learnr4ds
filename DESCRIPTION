@@ -1,16 +1,24 @@
 Package: learnr4ds
 Type: Package
-Title: What the Package Does (Title Case)
+Title: R4DS Tutorial
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
-      role = c("aut", "cre")
+      "Stephan", "Haug",
+      email = "haug@tum.de",
+      role = c("aut", "cre"),
+      comment =  c(ORCID = "0000-0002-4572-9087")
     )
   )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: What license is it under?
+Description: Tutorial for the course "R for Data Science".
+License: GNU General Public License (version 3)
+Depends:
+  tidyverse
+Imports:
+  learnr,
+  patchwork,
+  gapminder,
+  nycflights13,
+  janitor
 Encoding: UTF-8
 LazyData: true
