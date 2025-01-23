@@ -22,8 +22,4 @@ remotes::install_github("hgstp/learnr4ds")
 
 ### Credits
 
-Solutions to some of the exercises in the R4DS tutorial are based on [R
-for Data Science Solution
-Manual](https://jrnold.github.io/r4ds-exercise-solutions/) written by
-Jeffrey Arnold. The tutorial is published under Creative Commons
-Attribution-ShareAlike 4.0 License (CC BY-SA 4.0).
+<!-- Solutions to some of the exercises in the R4DS tutorial are based on  [R for Data Science Solution Manual](https://jrnold.github.io/r4ds-exercise-solutions/) written by Jeffrey Arnold. -->
