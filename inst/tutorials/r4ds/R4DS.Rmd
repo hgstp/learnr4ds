@@ -76,7 +76,7 @@ c) only even values (and no missing values).
 
 
 ```{r exercise-2-hint}
-# use %% for c.
+# use %% for c; use ?`%%` to get to the help page of %%
 ```
 
 
@@ -121,6 +121,7 @@ both_na( )
 
 
 
+### Exercise 4
 
 Modify the code to create boxplots of `hwy` for each `class` level.
 
@@ -141,7 +142,11 @@ ggplot(mpg) +
 
 Develop the code to create the following histogram for `hwy`:
 
-![](images/ex-5.png){width=70%}
+
+```{r, echo=FALSE}
+ggplot(mpg) + 
+  geom_point(aes(x = hwy), color = "white")
+```
 
 ```{r exercise-5, exercise = TRUE}
 
@@ -186,7 +191,7 @@ p + (p +scale_y_continuous(breaks = seq(15, 40, by = 5)) )
 ```{r exercise-7, exercise = TRUE}
 # complete the following code
 ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
-  geom_point()  + 
+  geom_point()  
   
 ```
 
@@ -245,16 +250,16 @@ p4 <- ggplot(mpg, aes(x = displ, y = hwy)) + geom_point(aes(colour = drv), size 
 
 ```{r exercise-9, exercise = TRUE, exercise.eval=FALSE}
 # top left
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy))  
    
 # top right
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy))  
    
 # bottom left
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy))  
    
 # bottom right
-ggplot(mpg, aes(x = displ, y = hwy)) + 
+ggplot(mpg, aes(x = displ, y = hwy)) 
    
 ```
 
@@ -268,7 +273,7 @@ Make two scatterplots of `hwy` vs. `cyl`. For the second one,the `position` argu
 
 
 ```{r exercise-10, exercise = TRUE}
-# the first scatterplot of hwy vs cyl with posi
+# the first scatterplot of hwy vs cyl with position identity
 ggplot(mpg, aes(x = cyl, y = hwy)) + 
   geom_point()
 
