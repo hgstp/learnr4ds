@@ -145,7 +145,7 @@ Develop the code to create the following histogram for `hwy`:
 
 ```{r, echo=FALSE}
 ggplot(mpg) + 
-  geom_point(aes(x = hwy), color = "white")
+  geom_histogram(aes(x = hwy), color = "white")
 ```
 
 ```{r exercise-5, exercise = TRUE}
